@@ -2,7 +2,7 @@
   Function to serialize data to JSON string
   Converts BigInt values to custom format (strings with digits and "n" at the end) and then converts them to proper big integers in JSON string
 */
-export const JSONStringify = (data, space) => {
+const JSONStringify = (data, space) => {
   if (!data) return JSON.stringify(data);
 
   const bigInts = /([\[:])?"(-?\d+)n"([,\}\]])/g;
@@ -39,7 +39,7 @@ export const JSONStringify = (data, space) => {
       3.3 ] without " after it
     All whitespace and newline characters outside of string values are ignored.
 */
-export const JSONParse = (json) => {
+const JSONParse = (json) => {
   if (!json) return JSON.parse(json);
 
   const numbersBiggerThanMaxInt =
@@ -56,3 +56,5 @@ export const JSONParse = (json) => {
     return value;
   });
 };
+
+module.exports = {JSONParse, JSONStringify}
